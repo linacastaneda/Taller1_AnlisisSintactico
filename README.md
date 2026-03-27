@@ -1,107 +1,91 @@
-# Taller 1 — Análisis Sintáctico
+# ACTIVIDADAST — Taller 1: Análisis Sintáctico
+
+**Lina Castañeda**  
+Universidad Sergio Arboleda · Ciencias de la Computación e Inteligencia Artificial  
+Profesor: Joaquín Fernando Sánchez Cifuentes  
+Lenguajes de programación y transducción · 2026
 
 ---
 
-## Descripción
+## Descripción general
 
-Este repositorio contiene los tres ejercicios del Taller 1 sobre análisis sintáctico.
-
----
-
-## Ejercicio 1 — Árbol Sintáctico Detallado (ASD)
-
-**Archivo:** `Ejercicio1_ASD.py`
-
-Implementa un analizador sintáctico descendente recursivo que genera el árbol de derivación completo (ASD) para la gramática de expresiones aritméticas de las diapositivas:
-
-```
-E  →  E opsuma T  |  T
-T  →  T opmul  F  |  F
-F  →  pari E pard  |  id  |  num
-```
-
-**Características:**
-- La gramática es configurable: basta modificar el diccionario `GRAMATICA` y `TOKENS` para cambiar los operadores o las producciones.
-- Genera la imagen PNG del árbol si Graphviz está instalado.
-- Soporta identificadores (`id`), números (`num`) y paréntesis.
-
-**Ejecución:**
-```bash
-python3 Ejercicio1_ASD.py
-```
-
-## Ejercicio 2 — Comparación CYK O(n³) vs LL(1) O(n)
-
-**Archivo:** `Ejercicio2_CYK_vs_LL1.py`
-
-Compara el algoritmo CYK (Cocke–Younger–Kasami) con un parser LL(1) descendente recursivo, midiendo tiempo de ejecución (ms) y memoria pico (KB) con `tracemalloc`.
-
-    n |   CYK tiempo(ms) |  CYK mem(KB) |   ANTLR tiempo(ms) |  ANTLR mem(KB)
---------------------------------------------------------------------------------
-    2 |           0.0323 |         2.20 |             0.9225 |         146.71
-    3 |           0.0647 |         5.83 |             0.2393 |          12.73
-    5 |           0.2007 |        18.95 |             0.2272 |          13.74
-    8 |           0.7715 |        50.41 |             0.3055 |          15.38
-   10 |           1.5043 |        81.06 |             0.2772 |          14.29
-   15 |           5.0912 |       186.61 |             0.4229 |          19.15
-   20 |          12.0687 |       335.59 |             0.5593 |          23.38
-
-**Complejidades:**
-
-| Algoritmo | Tiempo        | Memoria         |
-|-----------|---------------|-----------------|
-| CYK       | O(n³ · \|G\|) | O(n² · \|V\|)   |
-| LL(1)     | O(n)          | O(n)            |
-
-**Ejecución:**
-```bash
-python3 Ejercicio2_CYK_vs_LL1.py
-```
-
----
-
-## Ejercicio 3 — Precedencia y Asociatividad
-
-**Archivo:** `Ejercicio3_Precedencia_Asociatividad.py`
-
-Implementa un parser con tabla de precedencia configurable. Se definen cuatro versiones y se compara el árbol AST generado para la misma cadena:
-
-| Versión | Precedencia | Asociatividad |
-|---------|-------------|---------------|
-| V1      | `* > +`     | Izquierda     |
-| V2      | `+ > *`     | Izquierda     |
-| V3      | `* > +`     | Derecha       |
-| V4      | `+ > *`     | Derecha       |
-
-**Para `2 + 3 * 4`:**
-- **V1** → `2 + (3 * 4)` = 14   estándar matemático
-- **V2** → `(2 + 3) * 4` = 20  (suma primero)
-- **V3** → `2 + (3 * 4)` = 14  (misma prec, asoc derecha no cambia con un solo operador por nivel)
-- **V4** → `(2 + 3) * 4` = 20  (suma primero + agrupación derecha)
-
-**Ejecución:**
-```bash
-python3 Ejercicio3_Precedencia_Asociatividad.py
-```
-
----
-
-## Requisitos
-
-```bash
-pip install graphviz   # opcional, solo para generar imágenes PNG en Ej1
-python3 --version      # Python 3.8+
-```
+Este repositorio contiene los tres ejercicios del Taller 1 sobre análisis sintáctico. Cada ejercicio está en su propia carpeta con su código fuente, capturas de ejecución y README individual.
 
 ---
 
 ## Estructura del repositorio
 
 ```
-Taller1_AnálisisSintáctico/
-├── Ejercicio1_ASD.py
-├── Ejercicio2_CYK_vs_LL1.py
-├── Ejercicio3_Precedencia_Asociatividad.py
-├── Informe_AnálisisSintáctico.docx
-└── README.md
+ACTIVIDADAST/
+├── Ejercicio1/
+│   ├── Ejercicio1.py          # Parser ASD con gramática configurable
+│   ├── README.md              # Documentación del ejercicio 1
+│   ├── ASD_2p3x4.png          # Árbol generado para 2+3*4
+│   ├── ASD_2p3m4.png          # Árbol generado para 2+3-4
+│   └── ASD_2p3x(4m5).png      # Árbol generado para 2+3*(4-5)
+│
+├── Ejercicio2/
+│   ├── Ejercicio2.py          # Comparación CYK vs ANTLR con métricas
+│   ├── Ejercicio2.g4          # Gramática ANTLR
+│   ├── Ejercicio2Lexer.py     # Generado por ANTLR
+│   ├── Ejercicio2Parser.py    # Generado por ANTLR
+│   ├── README.md              # Documentación del ejercicio 2
+│   └── Outputs/               # Capturas de ejecución
+│
+├── Ejercicio3/
+│   ├── Ejercicio3.py          # 4 gramáticas: precedencia y asociatividad
+│   ├── README.md              # Documentación del ejercicio 3
+│   └── Outputs/               # Capturas de ejecución
+│
+└── README.md                  # Este archivo
+```
+
+---
+
+## Resumen de ejercicios
+
+### Ejercicio 1 — Árbol Sintáctico Detallado (ASD)
+
+Analizador sintáctico descendente recursivo con gramática configurable. Genera el árbol de derivación completo mostrando todos los nodos no-terminales (E, T, F).
+
+**Cadenas de prueba:** `2+3*4` · `2+3-4` · `2+3*(4-5)`  
+**Ver:** [Ejercicio1/README.md](Ejercicio1/README.md)
+
+---
+
+### Ejercicio 2 — Comparación CYK vs ANTLR
+
+Comparación de complejidad algorítmica midiendo tiempo (ms) y memoria (KB):
+
+| Algoritmo | Tiempo        | Memoria       |
+|-----------|---------------|---------------|
+| CYK       | O(n³ · \|G\|) | O(n² · \|V\|) |
+| ANTLR LL(*) | O(n) práctica | O(n)        |
+
+Para n=20: CYK tarda ~12.6 ms y usa 335 KB; ANTLR tarda ~0.6 ms y usa 23 KB.  
+**Ver:** [Ejercicio2/README.md](Ejercicio2/README.md)
+
+---
+
+### Ejercicio 3 — Precedencia y Asociatividad
+
+Cuatro versiones de la misma gramática aritmética, combinando:
+
+| Versión | Precedencia       | Asociatividad | `2+3*4` | `10-5-2` |
+|---------|-------------------|---------------|---------|----------|
+| V1      | normal  (* > +)   | Izquierda     | 14 ✓    | 3 ✓      |
+| V2      | normal  (* > +)   | Derecha       | 14      | 7        |
+| V3      | inversa (+ > *)   | Izquierda     | 20      | 3        |
+| V4      | inversa (+ > *)   | Derecha       | 20      | 7        |
+
+**Ver:** [Ejercicio3/README.md](Ejercicio3/README.md)
+
+---
+
+## Requisitos
+
+```bash
+python3 --version        # Python 3.8+
+pip install graphviz     # Opcional, para imágenes PNG en Ejercicio 1
+pip install antlr4-python3-runtime  # Necesario para Ejercicio 2
 ```
