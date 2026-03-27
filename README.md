@@ -1,4 +1,4 @@
-# ACTIVIDADAST — Taller 1: Análisis Sintáctico
+# — Taller 1: Análisis Sintáctico
 
 ---
 
