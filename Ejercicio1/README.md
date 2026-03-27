@@ -55,8 +55,6 @@ Representa un nodo dentro del árbol sintáctico. Cada nodo corresponde a un sí
 Contiene toda la lógica del análisis sintáctico descendente recursivo. Recibe la lista de tokens del lexer y construye el ASD siguiendo exactamente la estructura de la gramática.
 
 
-**Cómo se logra la precedencia sin tabla:** `parse_E` siempre llama a `parse_T` para obtener su operando. Esto significa que todos los `*` se agrupan antes de que `parse_E` pueda usar el resultado como parte de una suma. La jerarquía de llamadas `E → T → F` implementa la precedencia de forma natural.
-
 ---
 
 
