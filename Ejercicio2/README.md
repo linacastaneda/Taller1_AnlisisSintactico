@@ -86,17 +86,6 @@ python3 Ejercicio2.py
 - El tiempo CYK se multiplica cada vez que n se duplica (consistente con O(n³)).
 - La memoria CYK crece en O(n²): de 18.95 KB (n=5) a 335.55 KB (n=20), factor.
 
----
-
-## Captura de ejecución
-
-![Captura Ejercicio 2](Outputs/Salida.png)
-
----
-
-## Conclusión
-
-CYK es un algoritmo que funciona con cualquier gramática libre de contexto en FNC, pero su costo cúbico lo hace impráctico para entradas reales. ANTLR implementa LL(*), que es O(n) en la práctica para gramáticas bien estructuradas. Los compiladores reales (GCC, Clang, javac) siempre usan algoritmos LL o LR, nunca CYK.
 
 ---
 
