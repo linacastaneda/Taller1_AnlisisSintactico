@@ -164,7 +164,7 @@ if __name__ == "__main__":
         print(f"\n  {nombre}")
         print(f"  {'-'*58}")
         ast = ParserPratt(lexer(cadena1), tabla).parse_expr()
-        print(f"  AST:       {ast}")
+        print(f"  ASD:       {ast}")
         print(f"  Resultado: {evaluar(ast)}")
         imprimir(ast, pref="  ")
 
@@ -178,6 +178,6 @@ if __name__ == "__main__":
         print(f"\n  {nombre}")
         print(f"  {'-'*58}")
         ast = ParserPratt(lexer(cadena2), tabla).parse_expr()
-        print(f"  AST:       {ast}")
+        print(f"  ASD:       {ast}")
         print(f"  Resultado: {evaluar(ast)}")
         imprimir(ast, pref="  ")

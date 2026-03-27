@@ -11,7 +11,7 @@ Este repositorio contiene los tres ejercicios del Taller 1 sobre análisis sint�
 ## Estructura del repositorio
 
 ```
-ACTIVIDADAST/
+Taller1_AnalisisSintactico/
 ├── Ejercicio1/
 │   ├── Ejercicio1.py          # Parser ASD con gramática configurable
 │   ├── README.md              # Documentación del ejercicio 1
@@ -41,7 +41,7 @@ ACTIVIDADAST/
 
 ### Ejercicio 1 — Árbol Sintáctico Detallado (ASD)
 
-Analizador sintáctico descendente recursivo con gramática configurable. Genera el árbol de derivación completo mostrando todos los nodos no-terminales (E, T, F).
+Analizador sintáctico descendente recursivo basado en la gramática dada. Genera el árbol de derivación completo.
 
 **Cadenas de prueba:** `2+3*4` · `2+3-4` · `2+3*(4-5)`  
 **Ver:** [Ejercicio1/README.md](Ejercicio1/README.md)
@@ -68,7 +68,7 @@ Cuatro versiones de la misma gramática aritmética, combinando:
 
 | Versión | Precedencia       | Asociatividad | `2+3*4` | `10-5-2` |
 |---------|-------------------|---------------|---------|----------|
-| V1      | normal  (* > +)   | Izquierda     | 14 ✓    | 3 ✓      |
+| V1      | normal  (* > +)   | Izquierda     | 14      | 3        |
 | V2      | normal  (* > +)   | Derecha       | 14      | 7        |
 | V3      | inversa (+ > *)   | Izquierda     | 20      | 3        |
 | V4      | inversa (+ > *)   | Derecha       | 20      | 7        |

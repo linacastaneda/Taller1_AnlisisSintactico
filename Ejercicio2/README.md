@@ -16,6 +16,8 @@ Compara dos algoritmos de análisis sintáctico midiendo **tiempo de ejecución 
 
 ## Gramáticas utilizadas
 
+Para la comparación experimental se usan dos gramáticas distintas pero equivalentes sobre las cadenas generadas de prueba. CYK requiere una gramática en FNC, mientras que ANTLR utiliza una gramática EBNF con precedencia explícita.
+
 ### CYK — Forma Normal de Chomsky (FNC)
 
 CYK requiere que todas las producciones sean `A → BC` o `A → a`:
@@ -31,6 +33,8 @@ OP →  +  |  -  |  *  |  /
 ANTLR acepta gramáticas EBNF directamente:
 
 ```antlr
+
+
 grammar Ejercicio2;
 
 s    : expr ;
@@ -42,30 +46,6 @@ WS   : [ \t\r\n]+ -> skip ;
 
 ---
 
-## Funciones
-
-Este ejercicio no usa clases propias: ANTLR genera sus propias clases (`Ejercicio2Lexer`, `Ejercicio2Parser`) automáticamente a partir del archivo `.g4`. El código de `Ejercicio2.py` solo las invoca.
-
-| Función | Descripción |
-|---------|-------------|
-| `cyk_process(tokens, gram)` | Ejecuta el algoritmo CYK completo sobre una lista de tokens usando la gramática FNC recibida como diccionario. Construye la tabla triangular `tabla[i][j]` — un conjunto de no-terminales que derivan la subcadena `tokens[i..j]`. Tiene tres bucles anidados: longitud de subcadena, posición de inicio, y punto de partición `k`. Retorna `True` si `"S"` aparece en `tabla[0][n-1]`, es decir, si la cadena completa pertenece al lenguaje. |
-| `generar_cadena(n)` | Genera una cadena de prueba con `n` operandos `"a"` separados por operadores aleatorios (+, -, *, /). Devuelve dos versiones: la lista de tokens para CYK y la cadena de texto para ANTLR. |
-| `medir_cyk(tokens)` | Llama a `cyk_process` midiendo el tiempo con `time.perf_counter()` y la memoria pico con `tracemalloc`. Retorna `(tiempo_ms, memoria_kb)`. |
-| `medir_antlr(cadena)` | Construye el pipeline completo de ANTLR: `InputStream` → `Ejercicio2Lexer` → `CommonTokenStream` → `Ejercicio2Parser` → llama a `parser.s()`. Mide tiempo y memoria de todo el proceso. Retorna `(tiempo_ms, memoria_kb)`. |
-
----
-
-## Clases generadas por ANTLR
-
-Estos archivos son generados automáticamente por ANTLR a partir del `.g4` y no deben editarse manualmente:
-
-| Archivo | Descripción |
-|---------|-------------|
-| `Ejercicio2Lexer.py` | Analizador léxico generado. Convierte la cadena de texto en una secuencia de tokens reconociendo los literales `'a'`, `'+'`, `'-'`, `'*'`, `'/'`, `'('`, `')'` y descartando espacios. |
-| `Ejercicio2Parser.py` | Analizador sintáctico generado. Contiene los métodos `s()`, `expr()`, `term()` y `factor()` que corresponden directamente a las reglas del archivo `.g4`. Implementa un autómata LL(*) que decide qué producción aplicar mirando hacia adelante los tokens necesarios. |
-| `Ejercicio2Listener.py` | Interfaz de visitante generada. Define los métodos `enterXxx` y `exitXxx` para recorrer el árbol de análisis mediante el patrón Listener (no se usa en este ejercicio). |
-
----
 
 ## Requisitos
 
@@ -103,9 +83,8 @@ python3 Ejercicio2.py
 | 20 | 12.6235        | 335.55      | 0.6055           | 23.22         |
 
 **Observaciones:**
-- El tiempo CYK se multiplica ~8x cada vez que n se duplica (consistente con O(n³)).
-- La memoria CYK crece en O(n²): de 18.95 KB (n=5) a 335.55 KB (n=20), factor ~17.7x.
-- ANTLR tiene memoria casi constante (~14-23 KB) porque su tabla de análisis es fija.
+- El tiempo CYK se multiplica cada vez que n se duplica (consistente con O(n³)).
+- La memoria CYK crece en O(n²): de 18.95 KB (n=5) a 335.55 KB (n=20), factor.
 
 ---
 
@@ -117,7 +96,7 @@ python3 Ejercicio2.py
 
 ## Conclusión
 
-CYK es un algoritmo universal que funciona con cualquier gramática libre de contexto en FNC, pero su costo cúbico lo hace impráctico para entradas reales. ANTLR implementa LL(*), que es O(n) en la práctica para gramáticas bien estructuradas. Los compiladores reales (GCC, Clang, javac) siempre usan algoritmos LL o LR, nunca CYK.
+CYK es un algoritmo que funciona con cualquier gramática libre de contexto en FNC, pero su costo cúbico lo hace impráctico para entradas reales. ANTLR implementa LL(*), que es O(n) en la práctica para gramáticas bien estructuradas. Los compiladores reales (GCC, Clang, javac) siempre usan algoritmos LL o LR, nunca CYK.
 
 ---
 

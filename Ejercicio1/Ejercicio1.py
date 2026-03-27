@@ -52,7 +52,7 @@ def lexer(cadena):
         cadena (str): La cadena de entrada a analizar.
         
     Returns:
-        list: Lista de tuplas (tipo_token, valor) incluyendo un token final ("$", "$").
+        list: Lista de tuplas (tipo_token, valor)
         
     Raises:
         ValueError: Si se encuentra un carácter inválido en la entrada.
