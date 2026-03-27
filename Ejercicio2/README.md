@@ -1,7 +1,5 @@
 # Ejercicio 2 — Comparación CYK vs ANTLR
 
-**Taller 1 — Análisis Sintáctico**  
-Lina Castañeda · Universidad Sergio Arboleda · 2026
 
 ---
 

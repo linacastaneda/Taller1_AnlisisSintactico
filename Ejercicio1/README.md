@@ -1,7 +1,5 @@
 # Ejercicio 1 — Árbol Sintáctico Detallado (ASD)
 
-**Taller 1 — Análisis Sintáctico**  
-Lina Castañeda · Universidad Sergio Arboleda · 2026
 
 ---
 

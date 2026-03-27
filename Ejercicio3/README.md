@@ -1,8 +1,5 @@
 # Ejercicio 3 — Precedencia y Asociatividad
 
-**Taller 1 — Análisis Sintáctico**  
-Lina Castañeda · Universidad Sergio Arboleda · 2026
-
 ---
 
 ## ¿Qué hace?

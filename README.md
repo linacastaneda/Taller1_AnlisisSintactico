@@ -1,10 +1,5 @@
 # ACTIVIDADAST — Taller 1: Análisis Sintáctico
 
-**Lina Castañeda**  
-Universidad Sergio Arboleda · Ciencias de la Computación e Inteligencia Artificial  
-Profesor: Joaquín Fernando Sánchez Cifuentes  
-Lenguajes de programación y transducción · 2026
-
 ---
 
 ## Descripción general
