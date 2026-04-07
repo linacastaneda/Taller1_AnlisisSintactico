@@ -10,7 +10,7 @@ Compara dos algoritmos de análisis sintáctico midiendo **tiempo de ejecución 
 | Algoritmo | Complejidad tiempo | Complejidad memoria | Tipo |
 |-----------|--------------------|---------------------|------|
 | **CYK**   | O(n³ · \|G\|)      | O(n² · \|V\|)       | Bottom-up, cualquier GLC en FNC |
-| **ANTLR** | O(n) en práctica   | O(n)                | LL(*), gramáticas bien formadas |
+| **ANTLR** | O(n) en práctica   | O(n)                | LL(*),                          |
 
 ---
 
